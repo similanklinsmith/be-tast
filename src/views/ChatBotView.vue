@@ -42,7 +42,7 @@
         <div class="ui-h2">Chat with AI Assistant</div>
       </div>
       <div class="chat-container">
-        <div class="conversation">
+        <div class="conversation" ref="chatContainer">
           <div
             v-for="(message, index) in messages"
             :key="index"
@@ -119,10 +119,6 @@ export default {
     };
   },
   methods: {
-    scrollChatDown() {
-      const container = document.querySelector(".conversation");
-      container.scrollTop = container.scrollHeight;
-    },
     sendMessage() {
       if (this.newMessage) {
         this.messages.push({ text: this.newMessage, isSent: true });
@@ -149,7 +145,7 @@ export default {
         });
         this.messages.pop();
         // .answer
-        this.messages.push({text: response.data.answer});
+        this.messages.push({ text: response.data.answer });
         console.log(response.data.answer);
       } catch (error) {
         this.messages.pop();
@@ -166,6 +162,10 @@ export default {
         question: this.newMessage,
       };
       this.sendMessage();
+      this.$nextTick(() => {
+        const container = this.$refs.chatContainer;
+        container.scrollTop = container.scrollHeight;
+      });
       this.isEnabled = false;
       try {
         this.messages.push({
@@ -178,7 +178,7 @@ export default {
         });
         // .answer
         this.messages.pop();
-        this.messages.push({text: response.data.answer});
+        this.messages.push({ text: response.data.answer });
         console.log(response.data.answer);
       } catch (error) {
         this.messages.pop();
@@ -188,7 +188,6 @@ export default {
         console.error(error);
       }
       this.isEnabled = true;
-      this.scrollChatDown();
     },
   },
 };
