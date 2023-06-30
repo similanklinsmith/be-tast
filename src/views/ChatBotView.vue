@@ -129,7 +129,7 @@ export default {
       this.isShow = false;
       this.newMessage = text;
       this.sendMessage();
-      const BASE_URL = process.env.VUE_APP_API_PATH;
+      // const BASE_URL = process.env.VUE_APP_API_PATH;
       const data = {
         question: text,
       };
@@ -138,7 +138,7 @@ export default {
         this.messages.push({
           text: "Typing...",
         });
-        const response = await axios.post(BASE_URL, data, {
+        const response = await axios.post("https://sample-gpt.as.r.appspot.com/chat", data, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -157,7 +157,7 @@ export default {
       this.isEnabled = true;
     },
     async askChatBotByType() {
-      const BASE_URL = process.env.VUE_APP_API_PATH;
+      // const BASE_URL = process.env.VUE_APP_API_PATH;
       const data = {
         question: this.newMessage,
       };
@@ -171,7 +171,7 @@ export default {
         this.messages.push({
           text: "Typing...",
         });
-        const response = await axios.post(BASE_URL, data, {
+        const response = await axios.post("https://sample-gpt.as.r.appspot.com/chat", data, {
           headers: {
             "Content-Type": "application/json",
           },
