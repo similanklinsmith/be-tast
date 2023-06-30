@@ -128,9 +128,6 @@ export default {
       this.isShow = false;
       this.newMessage = text;
       this.sendMessage();
-      this.messages.push({
-        text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat, necessitatibus tenetur. Magni, qui. Ipsa accusantium dolores similique quibusdam? A consequatur sint debitis quia repellendus aliquam voluptates repellat asperiores quidem distinctio sed suscipit, atque at incidunt vel illum laboriosam quis saepe harum ea veritatis consequuntur minima! Deserunt vero rem eius quas similique veniam, aut eveniet tempore, itaque adipisci assumenda? Suscipit explicabo quis, ab at vel officia modi ut placeat, doloremque facere molestias vero expedita voluptatem rerum quisquam ex vitae. Numquam eius doloremque quibusdam quam hic optio dolor, atque laboriosam, ducimus veniam quia. Ullam ut aspernatur sit, odit temporibus exercitationem quisquam, consequatur deserunt sunt inventore itaque officiis corrupti ab deleniti quam expedita facere voluptatibus excepturi, illum dicta? Quae necessitatibus nisi praesentium minus optio ex fuga molestias, repellendus quia iure aperiam voluptatibus adipisci aspernatur assumenda itaque, aliquid, nemo nulla sapiente ipsum officia? Vel ratione culpa doloremque molestiae et obcaecati repellendus voluptatem quis necessitatibus consequuntur eum quidem, id consequatur maiores in veniam, sequi nobis neque officiis. Aliquid reiciendis quas esse perspiciatis ipsam animi laborum repudiandae nostrum maxime quo totam, neque sunt doloribus sapiente repellat, excepturi illo est hic quis recusandae iste sint deserunt! Quo quidem voluptatum mollitia, laudantium quas totam, iste ullam perspiciatis enim consectetur ipsa quos distinctio, officia nesciunt a itaque quod error libero eius laboriosam nisi repellat voluptate provident similique! Iure, eos nihil. Incidunt obcaecati eius quia, quisquam nemo perspiciatis, repellat architecto aliquam, magnam a laborum. Eaque delectus architecto eum numquam voluptatum enim tempora mollitia velit debitis exercitationem ex ullam quis aperiam sapiente nam, alias saepe nesciunt quasi animi eos illo quod corporis natus! Reprehenderit incidunt eligendi provident voluptas quod accusantium ipsam dolor fugiat reiciendis numquam nemo repellendus dolore vitae suscipit iste expedita obcaecati asperiores adipisci, perspiciatis in quis maiores natus. Possimus corrupti repellat ea distinctio? Quae nulla aspernatur dicta ullam, qui voluptatum animi natus magnam excepturi deleniti mollitia dolorem tempore non labore temporibus nostrum ab odio officia quibusdam saepe, quam esse! Consequatur maiores molestias, quasi cupiditate officiis eaque odio porro, sint, a beatae at quos modi impedit est. Saepe hic ea corporis illum culpa velit ratione atque quos harum sapiente quam debitis eum, esse magnam error explicabo. Provident numquam, ducimus iste sunt nostrum alias harum sint explicabo repellendus vitae impedit. Officia placeat illum eligendi repudiandae ab totam deserunt ea fugiat atque. Perferendis amet, ipsam quas mollitia odio asperiores aspernatur reprehenderit nostrum? Impedit saepe quisquam ipsam quod pariatur modi dolorem provident! Explicabo numquam nam ut mollitia voluptatem quae error incidunt reprehenderit saepe quod aspernatur et, quasi recusandae. Vel commodi dolor quas minus in praesentium facere quisquam eos. Veniam eius facilis eaque dolore, numquam necessitatibus porro ad dicta hic ducimus. Animi a sit beatae quis, laborum quae possimus voluptates fugit illum corrupti est tempora aliquid excepturi deserunt ducimus. Adipisci doloribus sint nulla beatae ab perferendis cum consequatur? Id quam vitae delectus nam iste, minima, et similique quas enim animi tempora placeat necessitatibus earum sunt consequatur vel. Repudiandae provident eius necessitatibus voluptatibus, quidem minima non, tenetur error saepe totam repellendus, voluptatum temporibus eum odit?",
-      });
       const BASE_URL = process.env.VUE_APP_API_PATH;
       const data = {
         question: text,
@@ -141,8 +138,12 @@ export default {
             "Content-Type": "application/json",
           },
         });
+        this.messages.push(response.data);
         console.log(response.data);
       } catch (error) {
+        this.messages.push({
+          text: "Hmm...something seems to have gone wrong. Mayber try me again in a little bit.",
+        });
         console.error(error);
       }
     },
@@ -158,8 +159,12 @@ export default {
             "Content-Type": "application/json",
           },
         });
+        this.messages.push(response.data);
         console.log(response.data);
       } catch (error) {
+        this.messages.push({
+          text: "Hmm...something seems to have gone wrong. Mayber try me again in a little bit.",
+        });
         console.error(error);
       }
       this.scrollChatDown();
