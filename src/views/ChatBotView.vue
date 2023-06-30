@@ -133,14 +133,19 @@ export default {
         question: text,
       };
       try {
+        this.messages.push({
+          text: "Typing...",
+        });
         const response = await axios.post(BASE_URL, data, {
           headers: {
             "Content-Type": "application/json",
           },
         });
+        this.messages.pop();
         this.messages.push(response.data);
         console.log(response.data);
       } catch (error) {
+        this.messages.pop();
         this.messages.push({
           text: "Hmm...something seems to have gone wrong. Mayber try me again in a little bit.",
         });
@@ -154,14 +159,19 @@ export default {
       };
       this.sendMessage();
       try {
+        this.messages.push({
+          text: "Typing...",
+        });
         const response = await axios.post(BASE_URL, data, {
           headers: {
             "Content-Type": "application/json",
           },
         });
+        this.messages.pop();
         this.messages.push(response.data);
         console.log(response.data);
       } catch (error) {
+        this.messages.pop();
         this.messages.push({
           text: "Hmm...something seems to have gone wrong. Mayber try me again in a little bit.",
         });
