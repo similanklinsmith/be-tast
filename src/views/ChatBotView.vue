@@ -17,7 +17,7 @@
         </div>
         <div class="questions flex flex-col items-center">
           <QuestionCard
-            :text="'How to increase volume in Friends get Friend campaign?'"
+            :text="'How to increase 15% revenue?'"
             @questionAction="askChatBot"
           />
           <QuestionCard
