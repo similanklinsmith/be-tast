@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none
+}
+
+html {
+    font-size: 10px;
+    overflow-x: hidden;
+    background-color: #EDF1FC;
+}
+
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+.heading-1 {
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 5.6rem;
+    letter-spacing: 0rem;
+}
+
+.heading-2 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 4.8rem;
+    letter-spacing: 0rem;
+}
+
+.heading-3 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 36rem;
+    letter-spacing: 0rem;
+}
+
+.heading-4 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+    letter-spacing: 0rem;
+}
+
+.body-1-bold {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.body-1-regular {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.body-2-bold {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.body-2-regular {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.body-caption {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 2rem;
+    letter-spacing: 0rem;
+
+}
+
+.texlink-1 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.texlink-2 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 5.6rem;
+    letter-spacing: 0rem;
+}
+
+.ui-h2 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 4.8rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-h3 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 3.6rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-h4 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-h4-regular {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 3.2rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-body-1-medium {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-body-1-regular {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-body-2-medium {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-body-2-regular {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+
+}
+
+.ui-caption {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 2rem;
+    letter-spacing: 0rem;
+
+}
+.route-enter-from {
+    opacity: 0;
+    transform: translateY(4rem);
+}
+
+.route-enter-active {
+    transition: all .3s ease-in-out
+}
+
+.route-leave-to {
+    opacity: 0;
+    transform: translateY(0rem);
+}
+
+.route-leave-active {
+    transition: .3s all ease-in-out
+}
