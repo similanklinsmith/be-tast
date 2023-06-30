@@ -79,6 +79,17 @@
             placeholder="Send a message"
             v-model="newMessage"
           />
+          <div
+            class="button-send cursor-pointer"
+            @click="newMessage.length != 0 ? askChatBotByType() : null"
+          >
+            <BaseIcon
+              class="text-blue"
+              :width="'24'"
+              :height="'25'"
+              :iconStyle="'M20.7825 3.73991C20.6813 3.63917 20.5534 3.56941 20.4139 3.53886C20.2744 3.5083 20.1291 3.5182 19.995 3.56741L3.495 9.56741C3.3527 9.62138 3.23019 9.71737 3.14374 9.84263C3.05729 9.96788 3.01099 10.1165 3.01099 10.2687C3.01099 10.4209 3.05729 10.5694 3.14374 10.6947C3.23019 10.8199 3.3527 10.9159 3.495 10.9699L9.9375 13.5424L14.6925 8.77241L15.75 9.82991L10.9725 14.6074L13.5525 21.0499C13.6081 21.1895 13.7043 21.3091 13.8286 21.3933C13.953 21.4776 14.0998 21.5226 14.25 21.5224C14.4016 21.5193 14.5486 21.4703 14.6718 21.382C14.795 21.2936 14.8885 21.17 14.94 21.0274L20.94 4.52741C20.9911 4.39472 21.0034 4.25023 20.9755 4.1108C20.9477 3.97137 20.8807 3.84274 20.7825 3.73991Z'"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -103,6 +114,10 @@ export default {
     };
   },
   methods: {
+    scrollChatDown() {
+      const container = document.querySelector(".conversation");
+      container.scrollTop = container.scrollHeight;
+    },
     sendMessage() {
       if (this.newMessage) {
         this.messages.push({ text: this.newMessage, isSent: true });
@@ -130,6 +145,24 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    async askChatBotByType() {
+      const BASE_URL = process.env.VUE_APP_API_PATH;
+      const data = {
+        question: this.newMessage,
+      };
+      this.sendMessage();
+      try {
+        const response = await axios.post(BASE_URL, data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+      this.scrollChatDown();
     },
   },
 };
@@ -225,13 +258,19 @@ export default {
         display: flex;
         align-items: center;
         bottom: 2.4rem;
-        width: 75%;
+        width: 77%;
         position: absolute;
         .chat-input {
           width: 100%;
           margin: 0 4rem;
           padding: 1.2rem 1.6rem;
           border-radius: 2.4rem;
+        }
+        .button-send {
+          position: absolute;
+          right: 0%;
+          margin: 0 4rem;
+          padding: 1.2rem 1.6rem;
         }
       }
     }
