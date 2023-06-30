@@ -81,7 +81,11 @@
           />
           <div
             class="button-send cursor-pointer"
-            @click="newMessage.length != 0 ? askChatBotByType() : null"
+            @click="
+              newMessage.length != 0 && isEnabled == true
+                ? askChatBotByType()
+                : null
+            "
           >
             <BaseIcon
               class="text-blue"
@@ -109,6 +113,7 @@ export default {
   data() {
     return {
       isShow: true,
+      isEnabled: true,
       messages: [],
       newMessage: "",
     };
@@ -132,6 +137,7 @@ export default {
       const data = {
         question: text,
       };
+      this.isEnabled = false;
       try {
         this.messages.push({
           text: "Typing...",
@@ -142,8 +148,9 @@ export default {
           },
         });
         this.messages.pop();
-        this.messages.push(response.data);
-        console.log(response.data);
+        // .answer
+        this.messages.push({text: response.data.answer});
+        console.log(response.data.answer);
       } catch (error) {
         this.messages.pop();
         this.messages.push({
@@ -151,6 +158,7 @@ export default {
         });
         console.error(error);
       }
+      this.isEnabled = true;
     },
     async askChatBotByType() {
       const BASE_URL = process.env.VUE_APP_API_PATH;
@@ -158,6 +166,7 @@ export default {
         question: this.newMessage,
       };
       this.sendMessage();
+      this.isEnabled = false;
       try {
         this.messages.push({
           text: "Typing...",
@@ -167,9 +176,10 @@ export default {
             "Content-Type": "application/json",
           },
         });
+        // .answer
         this.messages.pop();
-        this.messages.push(response.data);
-        console.log(response.data);
+        this.messages.push({text: response.data.answer});
+        console.log(response.data.answer);
       } catch (error) {
         this.messages.pop();
         this.messages.push({
@@ -177,6 +187,7 @@ export default {
         });
         console.error(error);
       }
+      this.isEnabled = true;
       this.scrollChatDown();
     },
   },
