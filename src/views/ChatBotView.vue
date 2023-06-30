@@ -43,31 +43,22 @@
       </div>
       <div class="chat-container">
         <div class="conversation">
-          <div class="chat-messages">
-            <div
-              v-for="(message, index) in messages"
-              :key="index"
-              :class="[
-                'chat-message',
-                message.isSent
-                  ? 'sent-message user-chat ui-body-1-medium bg-blue text-white w-fit'
-                  : 'received-message ui-body-2-regular bg-white text-grey w-fit',
-              ]"
-            >
-              {{ message.text }}
-            </div>
-          </div>
-          <!-- <div
+          <div
             v-for="(message, index) in messages"
             :key="index"
             class="chat-message"
+            :class="[message.isSent ? 'justify-end' : 'justify-start']"
           >
-            <img
+            <div
+              class="profile-image flex flex-col items-center justify-center bg-blue"
               v-if="!message.isSent"
-              class="profile-image"
-              src="@/assets/images/botnoi.png"
-              alt="Received Profile"
-            />
+            >
+              <img
+                src="@/assets/images/icons/openai-white-logomark.png"
+                alt="logo"
+                style="width: 2.2rem; height: 2.2rem"
+              />
+            </div>
             <div
               :class="[
                 message.isSent
@@ -77,16 +68,11 @@
             >
               {{ message.text }}
             </div>
-                        <img
-              v-if="message.isSent"
-              class="profile-image"
-              src="@/assets/images/botnoi.png"
-              alt="Sent Profile"
-            />
-
-          </div> -->
+            <div class="profile-image" v-if="message.isSent">
+              <img src="@/assets/images/sample_user.png" alt="Sent Profile" />
+            </div>
+          </div>
         </div>
-
         <div class="user-input">
           <input
             class="chat-input flex bg-white ui-body-2-regular text-black placeholder:text-grey focus:outline-none focus:ring focus:ring-blue focus:ring-2 transition duration-300 ease-in-out"
@@ -187,63 +173,68 @@ export default {
       position: fixed;
       width: 100%;
     }
-  }
-}
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 9.6rem 16rem 9.6rem 16rem;
-  position: relative;
-  .conversation {
-    overflow-y: auto;
-  }
-}
-
-.chat-messages {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  .profile-image {
-    width: 2.4rem; /* Example width of the profile image */
-    height: 2.4rem; /* Example height of the profile image */
-    margin-right: 0.8rem; /* Example margin between profile image and message */
-    border-radius: 50%; /* Example border radius for the profile image */
-    /* Add any additional styling for the profile image */
-  }
-}
-
-.chat-message {
-  margin-bottom: 1.6rem;
-  display: flex;
-  align-items: flex-end;
-  max-width: 70%;
-}
-
-.sent-message {
-  align-self: flex-end;
-  border-radius: 2.4rem 0.4rem 2.4rem 2.4rem;
-  padding: 1.2rem 1.6rem;
-}
-
-.received-message {
-  align-self: flex-start;
-  border-radius: 0.4rem 2.4rem 2.4rem 2.4rem;
-  padding: 1.2rem 1.6rem;
-}
-
-.user-input {
-  display: flex;
-  align-items: center;
-  bottom: 2.4rem;
-  width: 75%;
-  position: absolute;
-  .chat-input {
-    width: 100%;
-    margin: 0 4rem;
-    padding: 1.2rem 1.6rem;
-    border-radius: 2.4rem;
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 9.6rem 16rem 9.6rem 16rem;
+      position: relative;
+      .conversation {
+        overflow-y: auto;
+        width: 100%;
+        .chat-message {
+          margin-bottom: 1.6rem;
+          display: flex;
+          align-items: flex-start;
+          max-width: 100%;
+          gap: 0.8rem;
+          .profile-image {
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .sent-message {
+            align-self: flex-end;
+            border-radius: 2.4rem 0.4rem 2.4rem 2.4rem;
+            padding: 1.2rem 1.6rem;
+            max-width: 70%;
+          }
+          .received-message {
+            align-self: flex-start;
+            border-radius: 0.4rem 2.4rem 2.4rem 2.4rem;
+            padding: 1.2rem 1.6rem;
+            max-width: 70%;
+            .profile-image {
+              width: 3.2rem;
+              height: 3.2rem;
+              border-radius: 50%;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+      .user-input {
+        display: flex;
+        align-items: center;
+        bottom: 2.4rem;
+        width: 75%;
+        position: absolute;
+        .chat-input {
+          width: 100%;
+          margin: 0 4rem;
+          padding: 1.2rem 1.6rem;
+          border-radius: 2.4rem;
+        }
+      }
+    }
   }
 }
 </style>
